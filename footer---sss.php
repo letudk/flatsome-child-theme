@@ -13,13 +13,11 @@ global $flatsome_opt;
 
 <footer id="footer" class="footer-wrapper">
 
-	<?php do_action('custom_footer'); ?>
-    <p>ashd asdhkahkdha skas dash dkasds</p>
+	<?php do_action('custom_footer'); ?> 
 </footer>
   
 </div>
  
-<?php wp_footer(); ?>
  
 </body>
 </html>
