@@ -398,8 +398,8 @@ function devvn_viewnumber_func($atts){
         <a class="link-load" href="#">
           <div class="date">08 <span>05 - 2024</span>
           </div>
-          <div class="pic-news" style="background-image: url(&quot;https://www.ancuong.com/webadmin-v2/pictures/files/news/2024/creative-hub-brochure/web.jpg&quot;);">
-            <img src="https://www.ancuong.com/webadmin-v2/pictures/files/news/2024/creative-hub-brochure/web.jpg" alt="CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY AN CƯỜNG" loading="lazy" class="load-start" data-was-processed="true">
+          <div class="pic-news" style="background-image: url(&quot;http://aleecafe.com:81/wp-content/uploads/2024/05/9dde017ecdb76ce935a6-2-1.jpg&quot;);">
+            <img src="http://aleecafe.com:81/wp-content/uploads/2024/05/9dde017ecdb76ce935a6-2-1.jpg" alt="CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY AN CƯỜNG" loading="lazy" class="load-start" data-was-processed="true">
           </div>
           <h3><span style = "color:#fff !important; font-weight:500;">CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY LÂM HIỆP HƯNG</span>
           </h3>
