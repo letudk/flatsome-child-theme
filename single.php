@@ -13,7 +13,7 @@ get_header(); ?>
             the_post();
         ?>
             <article id="post-<?php the_ID(); ?>">
-                <header class="entry-header">
+                <header class="entry-header" style="margin-top:25px;">
                     <h1 class="entry-title"><?php the_title(); ?></h1>
                    
                 </header>
