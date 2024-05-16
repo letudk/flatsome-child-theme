@@ -24,7 +24,7 @@ get_header(); ?>
 
                 <footer class="entry-footer">
               
-              <?php echo do_shortcode(' [gdrts_stars_rating]'); ?>    Chia sẻ: <?php echo do_shortcode('[share]'); ?>
+                  Sharing: <?php echo do_shortcode('[share]'); ?>
                 </footer>
             </article>
 
