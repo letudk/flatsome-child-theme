@@ -5,8 +5,8 @@ get_header(); ?>
 <div class="row row-small">
 
 
-<div class="large-12 col" style="background-color:rgb(248, 248, 248);">
-	<div class="breadcrum">	<?php custom_breadcrumbs(); ?></div>
+<div class="large-12 col" style="background-color: #fff;">
+	<div class="breadcrum">	</div>
    <main>
         <?php
         while (have_posts()) :
