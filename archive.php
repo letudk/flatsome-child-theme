@@ -7,10 +7,7 @@ get_header(); ?>
 
 
 <div class="large-9 col" style="background-color:#fff;">
-	<div class="archive-wrapper">
-		<div class="breadcrum">	<?php custom_breadcrumbs(); ?></div>
-
-<h1 class="title_cat"><?php single_cat_title(); ?></h1>
+	
 <div class="motachuyenmuc">
 	<?php echo category_description(); ?>
 		</div>
