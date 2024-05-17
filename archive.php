@@ -6,7 +6,7 @@ get_header(); ?>
 <div class="row row-small">
 
 
-<div class="large-9 col" style="background-color:rgb(248, 248, 248);">
+<div class="large-9 col" style="background-color:#fff;">
 	<div class="archive-wrapper">
 		<div class="breadcrum">	<?php custom_breadcrumbs(); ?></div>
 
@@ -47,13 +47,13 @@ get_header(); ?>
   <?php
 
 // Hiển thị nút "Xem thêm" dẫn đến bài viết đầy đủ
-echo '  <p><a class="xemthem" href="' . get_permalink() . '">Xem thêm</a></p>';
+echo '  <p><a class="xemthem" href="' . get_permalink() . '">Read more</a></p>';
 ?>
                 </div>
             </div>
         </article>
     <?php endwhile; else : ?>
-        <p><?php esc_html_e( 'Xin lỗi, chưa có nội dung để hiển thị' ); ?></p>
+        <p><?php esc_html_e( 'Sorry, there is no content to display yet' ); ?></p>
     <?php endif; ?>
 </div>
 <?php flatsome_posts_pagination(); ?>
