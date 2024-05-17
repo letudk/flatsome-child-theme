@@ -56,7 +56,7 @@ echo '  <p><a class="xemthem" href="' . get_permalink() . '">Read more</a></p>';
 <?php flatsome_posts_pagination(); ?>
 		
 	</div>
-	<div class="post-sidebar large-3 col" style="background-color:rgb(248, 248, 248);">
+	<div class="post-sidebar large-3 col" style="background-color:#fff;">
 		<?php flatsome_sticky_column_open( 'blog_sticky_sidebar' ); ?>
 		<?php get_sidebar(); ?>
 		<?php flatsome_sticky_column_close( 'blog_sticky_sidebar' ); ?>
