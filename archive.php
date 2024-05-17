@@ -8,9 +8,6 @@ get_header(); ?>
 
 <div class="large-9 col" style="background-color:#fff;">
 	
-<div class="motachuyenmuc">
-	<?php echo category_description(); ?>
-		</div>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
         <article id="post-<?php the_ID(); ?>" class="archive-post">
             <div class="archive-post-thumbnail">
