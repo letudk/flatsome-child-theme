@@ -14,7 +14,9 @@ foreach($post_categories as $c){
 	if ( $cat->slug == 'collection') {
 		echo '<div class="row-full">';
 	}else{
-		echo '<div class="row row-small">';
+		echo '<div class="row row-small" style="padding-left: 20px;
+    padding-right: 20px;
+    text-align: justify;">';
 	} 
 }
 ?>
