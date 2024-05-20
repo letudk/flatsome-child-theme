@@ -36,9 +36,8 @@ foreach($post_categories as $c){
                     <?php the_content(); ?>
                 </div>
 
-                <footer class="entry-footer">
-              
-                  Sharing: <?php echo do_shortcode('[share]'); ?>
+                <footer class="row row-small entry-footer footer-social">
+                       <?php echo do_shortcode('[share]'); ?>
                 </footer>
             </article>
 
