@@ -29,7 +29,7 @@ foreach($post_categories as $c){
         ?>
             <article id="post-<?php the_ID(); ?>">
                 <header class="entry-header" style="margin-top:25px;">
-                    <h1 class="entry-title"><?php the_title(); ?></h1>
+                    <h1 class="row row-small entry-title"><?php the_title(); ?></h1>
                 </header>
 
                 <div class="entry-content">
