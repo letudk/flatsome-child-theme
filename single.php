@@ -4,20 +4,20 @@ get_header(); ?>
 
 <!-- <div class="row row-small"> -->
 
+
+
 <?php
     $id = the_ID();
-    $terms = get_the_terms( $id, 'category' );
-    // print_r( $terms );
-    foreach($terms as $term) {
-       // echo $term->cat_ID;  
-	if($term->cat_ID == 27) {
-		echo $term->cat_ID;
+$post_categories = wp_get_post_categories( $id );
+
+foreach($post_categories as $c){
+    $cat = get_category( $c );
+	if ( $cat->slug == 'collection') {
 		echo '<div class="row-full">';
-	}else{
-		echo $term->cat_ID;
-		echo '<div class="row row-small">';
-	}
-    }
+	}{
+		echo '<div class="row-small">';
+	} 
+}
 ?>
 
 
