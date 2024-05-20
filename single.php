@@ -13,7 +13,7 @@ foreach($post_categories as $c){
     $cat = get_category( $c );
 	if ( $cat->slug == 'collection') {
 		echo '<div class="row-full">';
-	}{
+	}else{
 		echo '<div class="row row-small">';
 	} 
 }
