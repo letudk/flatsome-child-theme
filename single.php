@@ -10,10 +10,10 @@ get_header(); ?>
     // print_r( $terms );
     foreach($terms as $term) {
        // echo $term->cat_ID;  
-	if($term->cat_ID = 27) {
-		echo '<div class="row row-small">';
+	if($term->cat_ID == 27) {
+		echo '<div class="row-full">';
 	}else{
-		echo '<div class="row row-full">';
+		echo '<div class="row row-small">';
 	}
     }
 ?>
