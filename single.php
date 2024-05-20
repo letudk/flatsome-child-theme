@@ -7,7 +7,7 @@ get_header(); ?>
 
 
 <?php 
-$post_categories = wp_get_post_categories( get_the_ID(); );
+$post_categories = wp_get_post_categories( get_the_ID() );
 
 foreach($post_categories as $c){
     $cat = get_category( $c );
