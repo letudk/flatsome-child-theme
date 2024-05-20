@@ -4,6 +4,20 @@ get_header(); ?>
 
 <!-- <div class="row row-small"> -->
 
+<?php
+    $id = get_the_id();
+    $terms = get_the_terms( $id, 'category' );
+    // print_r( $terms );
+    foreach($terms as $term) {
+       // echo $term->cat_ID;  
+	if($term->cat_ID = 27) {
+		echo '<div class="row row-small">';
+	}else{
+		echo '<div class="row row-full">';
+	}
+    }
+?>
+
 
 <div class="large-12 col" style="background-color: transparent;">
 	<div class="breadcrum">	</div>
@@ -15,7 +29,6 @@ get_header(); ?>
             <article id="post-<?php the_ID(); ?>">
                 <header class="entry-header" style="margin-top:25px;">
                     <h1 class="entry-title"><?php the_title(); ?></h1>
-                   
                 </header>
 
                 <div class="entry-content">
@@ -38,7 +51,7 @@ get_header(); ?>
         <?php endwhile; ?>
     </main><!-- #main -->
 
-<!-- </div> -->
+</div> 
 
 </div>
 
