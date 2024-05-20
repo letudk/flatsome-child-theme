@@ -20,7 +20,7 @@ foreach($post_categories as $c){
 ?>
 
 
-<div class="large-12 col" style="background-color: transparent;">
+<div class="large-12 col notpadding" style="background-color: transparent;">
 	<div class="breadcrum">	</div>
    <main>
         <?php
