@@ -5,7 +5,7 @@ get_header(); ?>
 <!-- <div class="row row-small"> -->
 
 <?php
-    $id = get_the_id();
+    $id = the_ID();
     $terms = get_the_terms( $id, 'category' );
     // print_r( $terms );
     foreach($terms as $term) {
