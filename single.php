@@ -6,16 +6,15 @@ get_header(); ?>
 
 
 
-<?php
-    $id = the_ID();
-$post_categories = wp_get_post_categories( $id );
+<?php 
+$post_categories = wp_get_post_categories( the_ID() );
 
 foreach($post_categories as $c){
     $cat = get_category( $c );
 	if ( $cat->slug == 'collection') {
 		echo '<div class="row-full">';
 	}{
-		echo '<div class="row-small">';
+		echo '<div class="row row-small">';
 	} 
 }
 ?>
