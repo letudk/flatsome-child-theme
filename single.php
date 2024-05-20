@@ -2,7 +2,7 @@
 get_header(); ?>
 
 
-<div class="row row-small">
+<!-- <div class="row row-small"> -->
 
 
 <div class="large-12 col" style="background-color: transparent;">
@@ -38,7 +38,7 @@ get_header(); ?>
         <?php endwhile; ?>
     </main><!-- #main -->
 
-</div>
+<!-- </div> -->
 
 </div>
 
