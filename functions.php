@@ -34,6 +34,61 @@ function display_all_categories_with_empty() {
     }
 }
 add_shortcode( 'danhsachchuyenmuc', 'display_all_categories_with_empty' );
+// Hàm hiển thị nội dung trang tùy chỉnh
+function custom_admin_page_content() {
+    global $wpdb;
+    $args = array(
+        'hide_empty' => false, // Hiển thị cả những chuyên mục không có bài viết
+    );
+    $categories = get_categories($args); // Lấy tất cả danh mục bài viết
+    ?>
+    <div class="wrap">
+        <h1>Hướng dẫn theme - LH 0911202404 (Truyện)</h1>
+        <h2>⭐ Sửa danh sách bài viết muốn hiển thị ở trang chủ</h2>
+<p>
+Lấy ID danh mục tương ứng để điền vào shortcode chuyên mục muốn hiển thị:<br>
+<img src="https://i.imgur.com/Lu4CJKr.png" width="700px"/>
+		</p>
+<p>
+	Ví dụ:  Shortcode [chuyenmuc-wide cat_id="12" offset="4" posts_per_page="3"] thì trong đó cat_id="12" là id của chuyên mục , offset="4" là số bài viết không muốn hiển thị ( tính thụt lùi ), posts_per_page="3" là số lượng bài muốn hiển thị
+		</p>
+        <table class="widefat">
+            <thead>
+                <tr>
+                    <th>Tên danh mục</th>
+                    <th>ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($categories as $category) : ?>
+                    <tr>
+                        <td><?php echo $category->name; ?></td> <!-- Hiển thị tên của danh mục -->
+                        <td><?php echo $category->cat_ID; ?></td> <!-- Hiển thị ID của danh mục -->
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php
+}
+
+
+
+function add_custom_admin_page() {
+    add_menu_page(
+        'Hướng dẫn Theme', // Tiêu đề của trang
+        'Hướng dẫn Theme', // Tên menu
+        'manage_options', // Quyền truy cập cần thiết để xem trang
+        'custom-admin-page', // Slug của trang
+        'custom_admin_page_content', // Hàm hiển thị nội dung trang
+        'dashicons-info', // Icon của trang (có thể sử dụng dashicons)
+        99 // Vị trí của menu trong trang quản trị (99 là cuối cùng)
+    );
+}
+
+add_action('admin_menu', 'add_custom_admin_page');
+
+
 
 function latest_posts_shortcode($atts) {
     // Thiết lập các tham số mặc định và ghi đè bằng các tham số được truyền vào
@@ -392,171 +447,6 @@ add_action('ux_builder_setup', 'devvn_ux_builder_element');
 // SHORTCODE
 
 function devvn_viewnumber_func($atts){
-    echo '<div class="content-left">
-    <div class="big-news ani-item on-show">
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">08 <span>05 - 2024</span>
-          </div>
-          <div class="pic-news" style="background-image: url(&quot;https://www.ancuong.com/webadmin-v2/pictures/files/news/2024/creative-hub-brochure/web.jpg&quot;);">
-            <img src="https://www.ancuong.com/webadmin-v2/pictures/files/news/2024/creative-hub-brochure/web.jpg" alt="CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY AN CƯỜNG" loading="lazy" class="load-start" data-was-processed="true">
-          </div>
-          <h3><span style = "color:#fff !important; font-weight:500;">CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY LÂM HIỆP HƯNG</span>
-          </h3>
-        </a>
-      </div>
-    </div>
-    <div class="small-news ani-item on-show">
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">12 <span>04 - 2024</span>
-          </div>
-          <h3 >CHÍNH THỨC RA MẮT KHÔNG GIAN SÁNG TẠO ĐẦY MÀU SẮC CREATIVE HUB BY LAM HIEP HUNG</h3>
-        </a>
-      </div>
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">07 <span>05 - 2024</span>
-          </div>
-          <h3>LAM HIEP HUNG ĐỒNG HÀNH CÙNG ĐẠI HỌC Y DƯỢC TP. HCM</h3>
-        </a>
-      </div>
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">07 <span>05 - 2024</span>
-          </div>
-          <h3>LAM HIEP HUNG ĐƯỢC VINH DANH TOP 10 VẬT LIỆU XÂY DỰNG 2024</h3>
-        </a>
-      </div>
-      <a class="view-all ani-item on-show" href="/tin-tuc">xem tất cả</a>
-    </div>
-  </div> <style>
-
- 
-
-@media screen and (min-width: 1100px) {
-    .pic-news, .pic-pro {
-        border: 0 solid #444;
-        transition: border-width .3s ease-in-out;
-    }
-}
-  @media screen and (min-width: 1100px) {
-    .big-news.on-show, .player-vid.on-show, .small-news.on-show, .view-all.on-show {
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-    }
-  }
-  @media screen and (min-width: 1100px) {
-    .big-news.on-show, .small-news.on-show {
-        animation-name: goRight;
-        animation-delay: 0s;
-    }
-  }
-  .big-news, .small-news {
-    display: block;
-    margin: 0;
-  } 
-  .big-news .box-news, .date {
-    background-color: var(--color-normal);
-}
-.big-news h3 span, .box-news, .box-news a, .box-news h3, .date span {
-    display: block;
-}
-.box-news {
-    margin: 0 0 10px;
-    text-align: left;
-    background-color: var(--color-white-grey);
-}
-.big-news, .box-news, .pic-news, .small-news {
-    width: 100%;
-    height: auto;
-    position: relative;
-    opacity: 1;
-}
-@media screen and (min-width: 1100px) {
-    .box-news, .date, .new-product h3 {
-        transition: background-color .3s ease-in-out;
-    }
-} .big-news .date {
-    top: 0;
-    transform: translateY(0);
-}
-
-.big-news .box-news, .date {
-    background-color: #ba181b;
-}
-.date {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: auto;
-    height: auto;
-    padding: 5px 10px;
-    font-weight: 100;
-    font-size: 36px;
-    color: #fff;
-    line-height: 1;
-    text-align: center;
-    z-index: 1;
-} 
-.date span {
-    font-weight: 500;
-    font-size: 10px;
-    color: #FFF;
-}
-
-.big-news .pic-news {
-    height: 280px;
-    max-height: none;
-}
-.pic-news {
-    max-height: 255px;
-    overflow: hidden;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.big-news, .box-news, .pic-news, .small-news {
-    width: 100%;
-    height: auto;
-    position: relative;
-    opacity: 1;
-}
-.pic-news img {
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 1;
-}
-.pic-news img {
-    pointer-events: none;
-}
-.big-news h3, .view-all {
-    padding: 10px 20px;
-    font-size: 13px;
-}
-
-.big-news h3 {
-    color: #fff;
-    text-transform: uppercase;
-}
-.box-news h3 {
-    font-size: 14px;
-    line-height: 1.6;
-    font-weight: 500;
-    color: #111;
-    position: relative;
-    padding: 10px 20px 10px 90px;
-}
-</style>';
-}
-add_shortcode('devvn_viewnumber', 'devvn_viewnumber_func');
-
-// funtion new
-
-function devvn_viewnumber_func_new($atts){
-
     $atts = shortcode_atts(array(
         'cat_id' => $catId,
         'offset' => -1, 
@@ -566,8 +456,35 @@ function devvn_viewnumber_func_new($atts){
     
       $query = new WP_Query($atts);
     
-      ob_start();
-    
+      echo '<div class="content-left">';
+    //   while ($query->have_posts()) : $query->the_post(); 
+    //   if ($query->current_post === 0) {
+    //         echo '<div class="big-news ani-item on-show">
+    //         <div class="box-news">
+    //             <a class="link-load" href="#">
+    //             <div class="date">08 <span>05 - 2024</span>
+    //             </div>
+    //             <div class="pic-news" style="background-image: url(&quot;https://www.ancuong.com/webadmin-v2/pictures/files/news/2024/creative-hub-brochure/web.jpg&quot;);">
+    //                 <img src="https://www.ancuong.com/webadmin-v2/pictures/files/news/2024/creative-hub-brochure/web.jpg" alt="CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY AN CƯỜNG" loading="lazy" class="load-start" data-was-processed="true">
+    //             </div>
+    //             <h3><span style = "color:#fff !important; font-weight:500;">CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY LÂM HIỆP HƯNG</span>
+    //             </h3>
+    //             </a>
+    //         </div>
+    //     </div>';
+    //   }else{
+    //         echo '<div class="small-news ani-item on-show">
+    //         <div class="box-news">
+    //             <a class="link-load" href="#">
+    //             <div class="date">12 <span>04 - 2024</span>
+    //             </div>
+    //             <h3 >CHÍNH THỨC RA MẮT KHÔNG GIAN SÁNG TẠO ĐẦY MÀU SẮC CREATIVE HUB BY LAM HIEP HUNG</h3>
+    //             </a>
+    //         </div>
+    //     </div>';
+    //   };
+
+
       while ($query->have_posts()) : $query->the_post(); 
       if ($query->current_post === 0) { 
             echo '<div class="big-news ani-item on-show">
@@ -585,7 +502,7 @@ function devvn_viewnumber_func_new($atts){
                 echo '
                  </div>
                 <h3>
-                  <span>'.get_the_title().'</span>
+                  <span style = "color:#fff !important; font-weight:500;" >'.get_the_title().'</span>
                 </h3>
               </a>
             </div>
@@ -600,143 +517,193 @@ function devvn_viewnumber_func_new($atts){
               </a>
             </div>
             
-            <a class="view-all ani-item on-show" href="/tin-tuc">xem tất cả</a>
           </div>';
         };
       endwhile;
+    wp_reset_postdata(); // Đặt lại dữ liệu bài viết
+    echo '</div>';
 
-      wp_reset_postdata(); // Đặt lại dữ liệu bài viết
-  
-  echo '<style>
+  echo '  <style> 
+            @media screen and (min-width: 1100px) {
+                .pic-news, .pic-pro {
+                    border: 0 solid #444;
+                    transition: border-width .3s ease-in-out;
+                }
+            }
+            @media screen and (min-width: 1100px) {
+                .big-news.on-show, .player-vid.on-show, .small-news.on-show, .view-all.on-show {
+                    animation-duration: 1s;
+                    animation-fill-mode: forwards;
+                }
+            }
+            @media screen and (min-width: 1100px) {
+                .big-news.on-show, .small-news.on-show {
+                    animation-name: goRight;
+                    animation-delay: 0s;
+                }
+            }
+            .big-news, .small-news {
+                display: block;
+                margin: 0;
+            } 
+            .big-news .box-news, .date {
+                background-color: var(--color-normal);
+            }
+            .big-news h3 span, .box-news, .box-news a, .box-news h3, .date span {
+                display: block;
+            }
+            .box-news {
+                margin: 0 0 10px;
+                text-align: left;
+                background-color: var(--color-white-grey);
+            }
+            .big-news, .box-news, .pic-news, .small-news {
+                width: 100%;
+                height: auto;
+                position: relative;
+                opacity: 1;
+            }
+            @media screen and (min-width: 1100px) {
+                .box-news, .date, .new-product h3 {
+                    transition: background-color .3s ease-in-out;
+                }
+            } .big-news .date {
+                top: 0;
+                transform: translateY(0);
+            }
 
- 
+            .big-news .box-news, .date {
+                background-color: #ba181b;
+            }
+            .date {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: auto;
+                height: auto;
+                padding: 5px 10px;
+                font-weight: 100;
+                font-size: 36px;
+                color: #fff;
+                line-height: 1;
+                text-align: center;
+                z-index: 1;
+            } 
+            .date span {
+                font-weight: 500;
+                font-size: 10px;
+                color: #FFF;
+            }
 
-@media screen and (min-width: 1100px) {
-    .pic-news, .pic-pro {
-        border: 0 solid #444;
-        transition: border-width .3s ease-in-out;
-    }
-}
-  @media screen and (min-width: 1100px) {
-    .big-news.on-show, .player-vid.on-show, .small-news.on-show, .view-all.on-show {
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-    }
-  }
-  @media screen and (min-width: 1100px) {
-    .big-news.on-show, .small-news.on-show {
-        animation-name: goRight;
-        animation-delay: 0s;
-    }
-  }
-  .big-news, .small-news {
-    display: block;
-    margin: 0;
-  } 
-  .big-news .box-news, .date {
-    background-color: var(--color-normal);
-}
-.big-news h3 span, .box-news, .box-news a, .box-news h3, .date span {
-    display: block;
-}
-.box-news {
-    margin: 0 0 10px;
-    text-align: left;
-    background-color: var(--color-white-grey);
-}
-.big-news, .box-news, .pic-news, .small-news {
-    width: 100%;
-    height: auto;
-    position: relative;
-    opacity: 1;
-}
-@media screen and (min-width: 1100px) {
-    .box-news, .date, .new-product h3 {
-        transition: background-color .3s ease-in-out;
-    }
-} .big-news .date {
-    top: 0;
-    transform: translateY(0);
-}
+            .big-news .pic-news {
+                height: 280px;
+                max-height: none;
+            }
+            .pic-news {
+                max-height: 255px;
+                overflow: hidden;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .big-news, .box-news, .pic-news, .small-news {
+                width: 100%;
+                height: auto;
+                position: relative;
+                opacity: 1;
+            }
+            .pic-news img {
+                width: 100%;
+                height: auto;
+                display: block;
+                opacity: 1;
+            }
+            .pic-news img {
+                pointer-events: none;
+            }
+            .big-news h3, .view-all {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
 
-.big-news .box-news, .date {
-    background-color: #7e8387;
-}
-.date {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: auto;
-    height: auto;
-    padding: 5px 10px;
-    font-weight: 100;
-    font-size: 36px;
-    color: #fff;
-    line-height: 1;
-    text-align: center;
-    z-index: 1;
-} 
-.date span {
-    font-weight: 500;
-    font-size: 10px;
-    color: #444;
-}
+            .big-news h3 {
+                color: #fff;
+                text-transform: uppercase;
+            }
+            .box-news h3 {
+                font-size: 14px;
+                line-height: 1.6;
+                font-weight: 500;
+                color: #111;
+                position: relative;
+                padding: 10px 20px 10px 70px;
+                text-transform: uppercase;
+            }
 
-.big-news .pic-news {
-    height: 280px;
-    max-height: none;
-}
-.pic-news {
-    max-height: 255px;
-    overflow: hidden;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.big-news, .box-news, .pic-news, .small-news {
-    width: 100%;
-    height: auto;
-    position: relative;
-    opacity: 1;
-}
-.pic-news img {
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 1;
-}
-.pic-news img {
-    pointer-events: none;
-}
-.big-news h3, .view-all {
-    padding: 10px 20px;
-    font-size: 13px;
-}
-
-.big-news h3 {
-    color: #fff;
-    text-transform: uppercase;
-}
-.box-news h3 {
-    font-size: 14px;
-    line-height: 1.6;
-    font-weight: 400;
-    color: var(--color-grey);
-    position: relative;
-    padding: 10px 20px 10px 90px;
-}
-</style>';
+            .small-news.ani-item.on-show {
+                margin-top: 20px;
+            }
+            </style>';
 }
 add_shortcode('devvn_viewnumber', 'devvn_viewnumber_func');
 
 
+// short code new
 
-// custom footer 
+// function devvn_viewnumber_func_new($atts){
+
+//     $atts = shortcode_atts(array(
+//         'cat_id' => $catId,
+//         'offset' => -1, 
+//         'posts_per_page' => 4,
+//         'orderby' => 'rand'
+//       ), $atts );
+    
+//       $query = new WP_Query($atts);
+    
+//       ob_start();
+    
+//       while ($query->have_posts()) : $query->the_post(); 
+//       if ($query->current_post === 0) { 
+//             echo '<div class="big-news ani-item on-show">
+//             <div class="box-news">
+//               <a class="link-load" href="'.get_permalink().'"> 
+//                 <div class="date">'.get_the_date('d').'<span>'.get_the_date('m').'-'.get_the_date('Y').'</span>
+//                 </div>
+//                 <div class="pic-news" >';
+//                 $thumbnail_url = get_the_post_thumbnail_url();
+//                 if ($thumbnail_url) {
+//                     echo '<img src="' . $thumbnail_url . '" alt="' . get_the_title() . '" loading="lazy" class="load-start" data-was-processed="true">';
+//                 }else{
+//                     echo '<img src="http://aleecafe.com:81/wp-content/uploads/2024/05/placeholder-image.webp" loading="lazy" class="load-start" data-was-processed="true">';
+//                 };
+//                 echo '
+//                  </div>
+//                 <h3>
+//                   <span>'.get_the_title().'</span>
+//                 </h3>
+//               </a>
+//             </div>
+//           </div>';
+//         } else {
+//             echo '<div class="small-news ani-item on-show">
+//             <div class="box-news">
+//               <a class="link-load" href="'.get_permalink().'">
+//                 <div class="date">'.get_the_date('d').'<span>'.get_the_date('m').'-'.get_the_date('Y').'</span>
+//                 </div>
+//                 <h3>'.get_the_title().'</h3>
+//               </a>
+//             </div>
+            
+//             <a class="view-all ani-item on-show" href="/tin-tuc">xem tất cả</a>
+//           </div>';
+//         };
+//       endwhile;
+
+//       wp_reset_postdata(); // Đặt lại dữ liệu bài viết
+  
+// }
+// add_shortcode('devvn_viewnumber_new', 'devvn_viewnumber_func_new');
 
 
-function custom_footer(){
-	get_template_part( 'template-parts/footer/footer-custom' );
-}
-
-add_action( 'custom_footer', 'custom_footer', 10 );
