@@ -371,13 +371,13 @@ function custom_breadcrumbs() {
 // ADD CUSTOM UX
 function devvn_ux_builder_element(){
     add_ux_builder_shortcode('devvn_viewnumber', array(
-        'name'      => __('Ví dụ về Element'),
+        'name'      => __('Bai Viet Trang Chu UX'),
         'category'  => __('Content'),
         'priority'  => 1,
         'options' => array(
-            'number'    =>  array(
+            'catId'    =>  array(
                 'type' => 'scrubfield',
-                'heading' => 'Numbers',
+                'heading' => 'Categories ID',
                 'default' => '1',
                 'step' => '1',
                 'unit' => '',
@@ -392,45 +392,58 @@ add_action('ux_builder_setup', 'devvn_ux_builder_element');
 // SHORTCODE
 
 function devvn_viewnumber_func($atts){
-    echo '<div class="content-left">
-    <div class="big-news ani-item on-show">
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">08 <span>05 - 2024</span>
-          </div>
-          <div class="pic-news" style="background-image: url(&quot;http://aleecafe.com:81/wp-content/uploads/2024/05/9dde017ecdb76ce935a6-2-1.jpg&quot;);">
-            <img src="http://aleecafe.com:81/wp-content/uploads/2024/05/9dde017ecdb76ce935a6-2-1.jpg" alt="CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY AN CƯỜNG" loading="lazy" class="load-start" data-was-processed="true">
-          </div>
-          <h3><span style = "color:#fff !important; font-weight:500;">CREATIVE HUB - TRUNG TÂM SÁNG TẠO BY LÂM HIỆP HƯNG</span>
-          </h3>
-        </a>
-      </div>
-    </div>
-    <div class="small-news ani-item on-show">
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">12 <span>04 - 2024</span>
-          </div>
-          <h3 >CHÍNH THỨC RA MẮT KHÔNG GIAN SÁNG TẠO ĐẦY MÀU SẮC CREATIVE HUB BY LAM HIEP HUNG</h3>
-        </a>
-      </div>
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">07 <span>05 - 2024</span>
-          </div>
-          <h3>LAM HIEP HUNG ĐỒNG HÀNH CÙNG ĐẠI HỌC Y DƯỢC TP. HCM</h3>
-        </a>
-      </div>
-      <div class="box-news">
-        <a class="link-load" href="#">
-          <div class="date">07 <span>05 - 2024</span>
-          </div>
-          <h3>LAM HIEP HUNG ĐƯỢC VINH DANH TOP 10 VẬT LIỆU XÂY DỰNG 2024</h3>
-        </a>
-      </div>
-      <a class="view-all ani-item on-show" href="/tin-tuc">xem tất cả</a>
-    </div>
-  </div> <style>
+
+    $atts = shortcode_atts(array(
+        'cat_id' => $catId,
+        'offset' => -1, 
+        'posts_per_page' => 4,
+        'orderby' => 'rand'
+      ), $atts );
+    
+      $query = new WP_Query($atts);
+    
+      ob_start();
+    
+      while ($query->have_posts()) : $query->the_post(); 
+      if ($query->current_post === 0) { 
+            echo '<div class="big-news ani-item on-show">
+            <div class="box-news">
+              <a class="link-load" href="'.get_permalink().'"> 
+                <div class="date">'.get_the_date('d').'<span>'.get_the_date('m').'-'.get_the_date('Y').'</span>
+                </div>
+                <div class="pic-news" >';
+                $thumbnail_url = get_the_post_thumbnail_url();
+                if ($thumbnail_url) {
+                    echo '<img src="' . $thumbnail_url . '" alt="' . get_the_title() . '" loading="lazy" class="load-start" data-was-processed="true">';
+                }else{
+                    echo '<img src="http://aleecafe.com:81/wp-content/uploads/2024/05/placeholder-image.webp" loading="lazy" class="load-start" data-was-processed="true">';
+                };
+                echo '
+                 </div>
+                <h3>
+                  <span>'.get_the_title().'</span>
+                </h3>
+              </a>
+            </div>
+          </div>';
+        } else {
+            echo '<div class="small-news ani-item on-show">
+            <div class="box-news">
+              <a class="link-load" href="'.get_permalink().'">
+                <div class="date">'.get_the_date('d').'<span>'.get_the_date('m').'-'.get_the_date('Y').'</span>
+                </div>
+                <h3>'.get_the_title().'</h3>
+              </a>
+            </div>
+            
+            <a class="view-all ani-item on-show" href="/tin-tuc">xem tất cả</a>
+          </div>';
+        };
+      endwhile;
+
+      wp_reset_postdata(); // Đặt lại dữ liệu bài viết
+  
+  echo '<style>
 
  
 
@@ -483,7 +496,7 @@ function devvn_viewnumber_func($atts){
 }
 
 .big-news .box-news, .date {
-    background-color: #ba181b;
+    background-color: #7e8387;
 }
 .date {
     position: absolute;
@@ -503,7 +516,7 @@ function devvn_viewnumber_func($atts){
 .date span {
     font-weight: 500;
     font-size: 10px;
-    color: #FFF;
+    color: #444;
 }
 
 .big-news .pic-news {
@@ -544,14 +557,15 @@ function devvn_viewnumber_func($atts){
 .box-news h3 {
     font-size: 14px;
     line-height: 1.6;
-    font-weight: 500;
-    color: #111;
+    font-weight: 400;
+    color: var(--color-grey);
     position: relative;
     padding: 10px 20px 10px 90px;
 }
 </style>';
 }
 add_shortcode('devvn_viewnumber', 'devvn_viewnumber_func');
+
 
 
 // custom footer 
