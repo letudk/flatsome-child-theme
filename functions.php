@@ -453,8 +453,15 @@ function devvn_viewnumber_func($atts){
         'posts_per_page' => 4,
         'orderby' => 'rand'
       ), $atts );
+
+	$args = array(
+    'cat' => 7,               // Chỉ định ID của category
+    'posts_per_page' => 4,    // Số lượng bài viết muốn lấy
+    'post__not_in' => array(911),// Loại trừ bài viết có ID là 33
+		 'orderby' => 'rand'
+);
     
-      $query = new WP_Query($atts);
+      $query = new WP_Query($args);
     
       echo '<div class="content-left">';
     //   while ($query->have_posts()) : $query->the_post(); 
