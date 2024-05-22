@@ -433,7 +433,7 @@ function devvn_ux_builder_element(){
             'catId'    =>  array(
                 'type' => 'scrubfield',
                 'heading' => 'Categories ID',
-                'default' => '1',
+                'default' => '4',
                 'step' => '1',
                 'unit' => '',
                 'min'   =>  1,
