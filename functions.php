@@ -448,7 +448,7 @@ add_action('ux_builder_setup', 'devvn_ux_builder_element');
 
 function devvn_viewnumber_func($atts){
     $atts = shortcode_atts(array(
-        'cat_id' => 7,
+        'cat_id' => '7',
         'offset' => -1, 
         'posts_per_page' => 4,
         'orderby' => 'rand'
