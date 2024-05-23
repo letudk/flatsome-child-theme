@@ -672,6 +672,8 @@ add_action('wp_enqueue_scripts', 'enqueue_child_theme_styles');
 function custom_enqueue_scripts() {
 
     wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', false, null);
+
+    wp_enqueue_script('jquery');
     // Đăng ký script slick.min.js
     wp_register_script('slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, true);
 
@@ -679,6 +681,5 @@ function custom_enqueue_scripts() {
     wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array('jquery'), null, true);
     wp_enqueue_script('slick-js');
     wp_enqueue_script('theme-script');
-    wp_enqueue_script('jquery');
 }
 add_action('wp_enqueue_scripts', 'custom_enqueue_scripts');
