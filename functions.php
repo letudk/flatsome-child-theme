@@ -723,6 +723,8 @@ function enqueue_child_theme_styles() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_styles');
 function enqueue_child_theme_scripts() {
+      // Enqueue Slick script
+      wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/event-slick.min.js', array('jquery'), null, true);
     // Enqueue Slick script
     wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, true);
 }
