@@ -719,6 +719,6 @@ function my_theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_uri() );
 }
 function enqueue_slick_script() {
-    wp_enqueue_script('slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array('jquery'), '', true);
+    wp_enqueue_script('slick-js', get_template_directory_uri() . '/assets/slick.min.js', array('jquery'), '', true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_slick_script');
