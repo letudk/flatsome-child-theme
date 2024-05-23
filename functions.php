@@ -641,7 +641,7 @@ add_shortcode('devvn_viewnumber', 'devvn_viewnumber_func');
 
 function enqueue_child_theme_styles() {
     // Enqueue parent theme styles first if needed
-    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+    // wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 
     // Enqueue Slick CSS
     wp_enqueue_style('slick-css', get_stylesheet_directory_uri() . '/assets/css/slick.min.css', array(), null);
