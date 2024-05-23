@@ -723,9 +723,19 @@ function enqueue_child_theme_styles() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_styles');
 function enqueue_child_theme_scripts() {
+     // Hủy đăng ký jQuery mặc định của WordPress
+     wp_deregister_script('jquery');
+
+     // Đăng ký lại jQuery từ Google CDN
+     wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', false, null);
+ 
+     // Nhập jQuery
+     wp_enqueue_script('jquery');
       // Enqueue Slick script
       wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/event-slick.min.js', array('jquery'), null, true);
     // Enqueue Slick script
     wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_scripts');
+
+
