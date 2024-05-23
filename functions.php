@@ -675,7 +675,7 @@ function custom_enqueue_scripts() {
 
     wp_enqueue_script('jquery');
     // Đăng ký script slick.min.js
-    wp_register_script('slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, true);
+    wp_register_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, true);
 
     // Nhập script slick.min.js
     wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array('jquery'), null, true);
