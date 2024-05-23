@@ -647,3 +647,17 @@ function enqueue_child_theme_styles() {
     wp_enqueue_style('slick-css', get_stylesheet_directory_uri() . '/assets/css/slick.min.css', array(), null);
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_styles');
+
+function add_custom_scripts() {
+    // Đăng ký jQuery
+    wp_enqueue_script('custom-jquery', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), false, true);
+
+    // Đăng ký Slick slider và các sự kiện của nó
+    wp_enqueue_script('slick', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('custom-jquery'), false, true);
+    wp_enqueue_script('event-slick', get_stylesheet_directory_uri() . '/assets/js/event-slick.min.js', array('slick'), false, true);
+
+    // Đăng ký các hàm JavaScript tùy chỉnh
+    wp_enqueue_script('custom-functions', get_stylesheet_directory_uri() . '/assets/js/function.min.js', array('slick'), false, true);
+}
+
+add_action('wp_enqueue_scripts', 'add_custom_scripts');
