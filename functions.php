@@ -732,7 +732,7 @@ function enqueue_child_theme_scripts() {
      // Nhập jQuery
      wp_enqueue_script('jquery');
       // Enqueue Slick script
-      wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, true);
+      wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, false);
     // Enqueue Slick script
     // wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', false, null);
     // wp_enqueue_script('slick-js');
