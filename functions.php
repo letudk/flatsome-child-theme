@@ -74,22 +74,6 @@ Lấy ID danh mục tương ứng để điền vào shortcode chuyên mục mu�
 
 
 
-function add_custom_admin_page() {
-    add_menu_page(
-        'Hướng dẫn Theme', // Tiêu đề của trang
-        'Hướng dẫn Theme', // Tên menu
-        'manage_options', // Quyền truy cập cần thiết để xem trang
-        'custom-admin-page', // Slug của trang
-        'custom_admin_page_content', // Hàm hiển thị nội dung trang
-        'dashicons-info', // Icon của trang (có thể sử dụng dashicons)
-        99 // Vị trí của menu trong trang quản trị (99 là cuối cùng)
-    );
-}
-
-add_action('admin_menu', 'add_custom_admin_page');
-
-
-
 function latest_posts_shortcode($atts) {
     // Thiết lập các tham số mặc định và ghi đè bằng các tham số được truyền vào
     $atts = shortcode_atts(array(
@@ -655,65 +639,6 @@ function devvn_viewnumber_func($atts){
 }
 add_shortcode('devvn_viewnumber', 'devvn_viewnumber_func');
 
-
-// short code new
-
-// function devvn_viewnumber_func_new($atts){
-
-//     $atts = shortcode_atts(array(
-//         'cat_id' => $catId,
-//         'offset' => -1, 
-//         'posts_per_page' => 4,
-//         'orderby' => 'rand'
-//       ), $atts );
-    
-//       $query = new WP_Query($atts);
-    
-//       ob_start();
-    
-//       while ($query->have_posts()) : $query->the_post(); 
-//       if ($query->current_post === 0) { 
-//             echo '<div class="big-news ani-item on-show">
-//             <div class="box-news">
-//               <a class="link-load" href="'.get_permalink().'"> 
-//                 <div class="date">'.get_the_date('d').'<span>'.get_the_date('m').'-'.get_the_date('Y').'</span>
-//                 </div>
-//                 <div class="pic-news" >';
-//                 $thumbnail_url = get_the_post_thumbnail_url();
-//                 if ($thumbnail_url) {
-//                     echo '<img src="' . $thumbnail_url . '" alt="' . get_the_title() . '" loading="lazy" class="load-start" data-was-processed="true">';
-//                 }else{
-//                     echo '<img src="http://aleecafe.com:81/wp-content/uploads/2024/05/placeholder-image.webp" loading="lazy" class="load-start" data-was-processed="true">';
-//                 };
-//                 echo '
-//                  </div>
-//                 <h3>
-//                   <span>'.get_the_title().'</span>
-//                 </h3>
-//               </a>
-//             </div>
-//           </div>';
-//         } else {
-//             echo '<div class="small-news ani-item on-show">
-//             <div class="box-news">
-//               <a class="link-load" href="'.get_permalink().'">
-//                 <div class="date">'.get_the_date('d').'<span>'.get_the_date('m').'-'.get_the_date('Y').'</span>
-//                 </div>
-//                 <h3>'.get_the_title().'</h3>
-//               </a>
-//             </div>
-            
-//             <a class="view-all ani-item on-show" href="/tin-tuc">xem tất cả</a>
-//           </div>';
-//         };
-//       endwhile;
-
-//       wp_reset_postdata(); // Đặt lại dữ liệu bài viết
-  
-// }
-// add_shortcode('devvn_viewnumber_new', 'devvn_viewnumber_func_new');
-
-
 function enqueue_child_theme_styles() {
     // Enqueue parent theme styles first if needed
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
@@ -722,6 +647,7 @@ function enqueue_child_theme_styles() {
     wp_enqueue_style('slick-css', get_stylesheet_directory_uri() . '/assets/css/slick.min.css', array(), null);
 }
 add_action('wp_enqueue_scripts', 'enqueue_child_theme_styles');
+
 function enqueue_child_theme_scripts() {
      // Hủy đăng ký jQuery mặc định của WordPress
      wp_deregister_script('jquery');
@@ -732,9 +658,9 @@ function enqueue_child_theme_scripts() {
      // Nhập jQuery
      wp_enqueue_script('jquery');
       // Enqueue Slick script
-      wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, false);
+      wp_enqueue_script('slick-js', get_stylesheet_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null, true);
     // Enqueue Slick script
-    // wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', false, null);
+    wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', false, null);
     // wp_enqueue_script('slick-js');
     // Nhập các script khác nếu cần
     wp_enqueue_script('theme-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array('jquery'), null, true);
